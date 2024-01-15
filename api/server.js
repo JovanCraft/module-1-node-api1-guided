@@ -1,5 +1,6 @@
 // IMPORTS AT THE TOP
 const express = require('express')
+const Dog = require('./dog-model')
 // INSTANCE OF EXPRESS APP
 const server = express()
 // GLOBAL MIDDLEWARE
@@ -10,7 +11,28 @@ server.get('/hello-world', (req, res) => {
     res.status(200).json({ message: "hello, world!" })
 })
 // [GET]    /api/dogs     (R of CRUD, fetch all dogs)
+server.get('/api/dogs', async (req, res) => {
+    try {
+       const dogs = await Dog.findAll()
+       res.status(200).json(dogs)
+    } catch(err) {
+        res.status(500).json({
+            message: `Something horribe happened! Error fetching doggos! ${err.message}`
+         })
+    }
+})
 // [GET]    /api/dogs/:id (R of CRUD, fetch dog by :id)
+server.get('/api/dogs/:id', async (req, res) => {
+    try {
+        const { id } = req.params
+        const dog = await Dog.findById(id)
+        res.status(200).json(dog)
+     } catch(err) {
+         res.status(500).json({
+            message: `Something horribe happened! Error fetching doggo number ${req.params.id}! ${err.message}`
+         })
+     }
+})
 // [POST]   /api/dogs     (C of CRUD, create new dog from JSON payload)
 // [PUT]    /api/dogs/:id (U of CRUD, update dog with :id using JSON payload)
 // [DELETE] /api/dogs/:id (D of CRUD, remove dog with :id)
