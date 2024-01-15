@@ -38,7 +38,43 @@ server.get('/api/dogs/:id', async (req, res) => {
      }
 })
 // [POST]   /api/dogs     (C of CRUD, create new dog from JSON payload)
+server.post('/api/dogs', async (req, res) => {
+    try {
+       const { name, weight } = req.body
+       if(!name || !weight){
+        res.status(422).json({
+            message: 'doggos need name and weight to qualify!'
+        })
+       } else {
+        const createdDog = await Dog.create({ name, weight })
+       res.status(201).json({
+            message: "succeeded in creating another doggo!",
+            data: createdDog
+       })
+       }
+
+    } catch(err) {
+        res.status(500).json({
+            message: `Something horribe happened! Error creating doggo! ${err.message}`
+         })
+    }
+})
 // [PUT]    /api/dogs/:id (U of CRUD, update dog with :id using JSON payload)
+server.put('/api/dogs/:id', async (req, res) => {
+    try {
+        const { id } = req.params
+        const { name, weight } = req.body
+        const updatedDog = await Dog.update(id, { name, weight })
+        res.status(200).json({
+            message: 'doggo has been updated successfully!',
+            data: updatedDog,
+        })
+    } catch(err) {
+        res.status(500).json({
+            message: `Something horribe happened! Error updating doggo! ${err.message}`
+         })
+    }
+})
 // [DELETE] /api/dogs/:id (D of CRUD, remove dog with :id)
 
 // EXPOSING THE SERVER TO OTHER MODULES
