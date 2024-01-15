@@ -26,7 +26,11 @@ server.get('/api/dogs/:id', async (req, res) => {
     try {
         const { id } = req.params
         const dog = await Dog.findById(id)
-        res.status(200).json(dog)
+        if(!dog){
+            res.status(404).json({ message: `There's no doggo with the id ${id}`})
+        } else {
+            res.status(200).json(dog)
+        }
      } catch(err) {
          res.status(500).json({
             message: `Something horribe happened! Error fetching doggo number ${req.params.id}! ${err.message}`
