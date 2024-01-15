@@ -2,9 +2,13 @@
   "name": "module-1-node-api1-guided",
   "version": "1.0.0",
   "scripts": {
-    "hello": "echo \"Hello World!\""
+    "hello": "echo \"Hello World!\"",
+    "server": "nodemon index.js"
   },
   "dependencies": {
     "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
   }
 }
