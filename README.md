@@ -10,8 +10,8 @@ In this project we will learn how to create a simple Web API using `Node.js` and
 
 ## Project Setup
 
-- [ ] Clone this repository.
-- [ ] Open the project folder in VSCode.
+- [x] Clone this repository.
+- [x] Open the project folder in VSCode.
 
 ## Assignment
 
@@ -42,3 +42,5 @@ Here is a table with the `endpoint` descriptions:
 | View Dog details      | /api/dogs/{id}     | GET    | a Dog             |
 | Update Dog            | /api/dogs/{id}     | PUT    | updated Dog       |
 | Remove a Dog          | /api/dogs/{id}     | DELETE | deleted Dog       |
+
+
