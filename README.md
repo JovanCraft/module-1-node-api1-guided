@@ -44,3 +44,4 @@ Here is a table with the `endpoint` descriptions:
 | Remove a Dog          | /api/dogs/{id}     | DELETE | deleted Dog       |
 
 
+
